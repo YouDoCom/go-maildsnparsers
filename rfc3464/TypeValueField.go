@@ -21,15 +21,24 @@ type TypeValueField struct {
 
 // String returns string representation of TypeValueField
 func (tvf TypeValueField) String() string {
-	return fmt.Sprintf("%s; %s", tvf.Type, tvf.Value)
+	if tvf.Type != "" {
+		return fmt.Sprintf("%s; %s", tvf.Type, tvf.Value)
+	}
+	return tvf.Value
 }
 
 // ParseTypeValueField parses TypeValueField from string
 func ParseTypeValueField(value string) TypeValueField {
-	data := strings.SplitN(value, ";", 2)
+	if strings.Contains(value, ";") {
+		data := strings.SplitN(value, ";", 2)
+
+		return TypeValueField{
+			Type:  strings.TrimSpace(data[0]),
+			Value: strings.TrimSpace(data[1]),
+		}
+	}
 
 	return TypeValueField{
-		Type:  strings.TrimSpace(data[0]),
-		Value: strings.TrimSpace(data[1]),
+		Value: strings.TrimSpace(value),
 	}
 }

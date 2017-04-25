@@ -38,6 +38,13 @@ func Test_ParseTypeValueField(t *testing.T) {
 				Value: "550 Message was not accepted -- invalid mailbox.  Local\nmailbox tankist.zao@sample.sample is unavailable: user is terminated",
 			},
 		},
+		fixture{
+			value: "user@example.com",
+			expected: TypeValueField{
+				Type:  "",
+				Value: "user@example.com",
+			},
+		},
 	}
 
 	for _, f := range fixtures {
@@ -79,6 +86,13 @@ func Test_TypeValue_String(t *testing.T) {
 			value: TypeValueField{
 				Type:  "smtp",
 				Value: "550 Message was not accepted -- invalid mailbox.  Local\nmailbox tankist.zao@sample.sample is unavailable: user is terminated",
+			},
+		},
+		fixture{
+			expected: "user@example.com",
+			value: TypeValueField{
+				Type:  "",
+				Value: "user@example.com",
 			},
 		},
 	}
