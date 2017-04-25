@@ -22,3 +22,9 @@ _testmain.go
 *.exe
 *.test
 *.prof
+
+/.idea/libraries/
+/.idea/workspace.xml
+
+/vendor/**
+!/vendor/vendor.json
